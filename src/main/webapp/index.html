@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="app">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="js/app.js"></script>
+        
+    </head>
+    <body ng-controller="exchangeController as mainctrl">
+
+    <form ng-submit="mainctrl.getrate()">
+    <input type="text" ng-model="mainctrl.ratedata.fromCurrency">
+    <input type="text" ng-model="mainctrl.ratedata.toCurrency">
+    <input type="submit" value="Getrate">
+    </form>
+     <div>
+       value:  {{mainctrl.rate}}
+     </div>
+   </body>
+</html>
