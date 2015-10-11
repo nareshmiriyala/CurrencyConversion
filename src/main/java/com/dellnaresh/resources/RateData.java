@@ -6,21 +6,22 @@
 package com.dellnaresh.resources;
 
 /**
- *
  * @author NARESHM
  */
 public class RateData {
-    
+
     private String fromCurrency;
     private String toCurrency;
-    public RateData(){
-        
+
+    public RateData() {
+
     }
+
     public RateData(String fromCurrency, String toCurrency) {
         this.fromCurrency = fromCurrency;
         this.toCurrency = toCurrency;
     }
-    
+
 
     public String getFromCurrency() {
         return fromCurrency;
@@ -42,6 +43,6 @@ public class RateData {
     public String toString() {
         return "RateData{" + "fromCurrency=" + fromCurrency + ", toCurrency=" + toCurrency + '}';
     }
-    
-    
+
+
 }

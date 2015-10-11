@@ -13,13 +13,12 @@ import javax.money.convert.ExchangeRateProvider;
 import javax.money.convert.MonetaryConversions;
 
 /**
- *
  * @author NARESHM
  */
 public class CurrencyExchange {
-      public static NumberValue getRate(CurrencyUnit fromCurrencyUnit,CurrencyUnit toCurrencyUnit ){
-        ExchangeRateProvider exchangeRateProvider=MonetaryConversions.getExchangeRateProvider();
-        ExchangeRate exchangeRate = exchangeRateProvider.getExchangeRate(fromCurrencyUnit,toCurrencyUnit);
+    public static NumberValue getRate(CurrencyUnit fromCurrencyUnit, CurrencyUnit toCurrencyUnit) {
+        ExchangeRateProvider exchangeRateProvider = MonetaryConversions.getExchangeRateProvider();
+        ExchangeRate exchangeRate = exchangeRateProvider.getExchangeRate(fromCurrencyUnit, toCurrencyUnit);
         return exchangeRate.getFactor();
     }
 }

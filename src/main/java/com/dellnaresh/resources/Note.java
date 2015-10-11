@@ -6,22 +6,23 @@
 package com.dellnaresh.resources;
 
 /**
- *
  * @author NARESHM
  */
 public class Note {
     private long id;
     private String name;
     private String content;
-    public Note(){
-        
+
+    public Note() {
+
     }
+
     public Note(long id, String name, String content) {
         this.id = id;
         this.name = name;
         this.content = content;
     }
-    
+
     public long getId() {
         return id;
     }
@@ -50,6 +51,6 @@ public class Note {
     public String toString() {
         return "Note{" + "id=" + id + ", name=" + name + ", content=" + content + '}';
     }
-    
-    
+
+
 }
