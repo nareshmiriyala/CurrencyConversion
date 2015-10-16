@@ -5,6 +5,10 @@
  */
 package com.dellnaresh.controller;
 
+import com.dellnaresh.entity.Exchangerate;
+import com.dellnaresh.entity.RateRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +21,15 @@ import javax.money.NumberValue;
 import org.javamoney.moneta.CurrencyUnitBuilder;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 /**
  * @author NARESHM
  */
 @RestController
 public class CurrencyExchangeController {
+    @Autowired
+    private RateRepository repository;
     @RequestMapping(method = RequestMethod.POST, value = "/getrate")
     public double getConversionRate(@RequestBody RateData rateData) {
         CurrencyUnitBuilder of = CurrencyUnitBuilder.of(rateData.getFromCurrency(), "ECB");
@@ -31,4 +39,10 @@ public class CurrencyExchangeController {
         NumberValue rate = CurrencyExchange.getRate(fromCu, toCu);
         return rate.doubleValue();
     }
+    @Transactional(readOnly = true)
+    @RequestMapping(method = RequestMethod.GET, value = "/gethistory")
+    public List<Exchangerate> getConversionHistory() {
+            return this.repository.findAll();
+    }
+
 }

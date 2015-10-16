@@ -1,0 +1,2 @@
+insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',10.0,DATE '2015-12-31')
+insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',100.0,DATE '2015-10-10')
