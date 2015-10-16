@@ -1,2 +1,6 @@
 insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',10.0,DATE '2015-12-31')
 insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',100.0,DATE '2015-10-10')
+insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',13.0,DATE '2015-10-11')
+insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',14.0,DATE '2015-10-12')
+insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',15.0,DATE '2015-10-13')
+insert into exchangerate(fromcurrency,tocurrency,rate,currentdate) values ('AUD','INR',16.0,DATE '2015-10-14')

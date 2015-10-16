@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Get Rate
+                <small>Select the values!</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="../index.html">Home</a>
+                </li>
+                <li class="active">Get Rate</li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div ng-controller="rateController as mainctrl">
+            <div ng-init="mainctrl.getrate()"></div>
+            <div ng-init="mainctrl.getrate()"></div>
+            <br>
+            <div class="control-group">
+                <div class="control-label">
+                    value: {{mainctrl.rate}}
+                </div>
+            </div>
+
+            <canvas id="line" class="chart chart-line" chart-data="mainctrl.data"
+                    chart-labels="mainctrl.labels" chart-legend="true" chart-series="mainctrl.series"
+                    chart-click="mainctrl.onClick" >
+            </canvas>
+         </div>
+        </div>
+    </div>

@@ -7,7 +7,7 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('conversionApp', [
-  'ngRoute'
+  'ngRoute','chart.js'
 ]);
 
 /**
@@ -22,6 +22,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when("/faq", {templateUrl: "pages/faq.html", controller: "PageCtrl"})
     .when("/pricing", {templateUrl: "pages/pricing.html", controller: "PageCtrl"})
     .when("/exchangerate", {templateUrl: "pages/exchangerate.html", controller: "exchangeController"})
+    .when("/ratechart", {templateUrl: "pages/ratechart.html", controller: "rateController"})
     .when("/services", {templateUrl: "pages/services.html", controller: "PageCtrl"})
     .when("/contact", {templateUrl: "pages/contact.html", controller: "PageCtrl"})
     // Blog
@@ -67,4 +68,38 @@ self.rate=response.data;
 console.log(self.rate);
 });
 };
+}]);
+app.controller('rateController', ['$http', function($http) {
+var self = this;
+self.items = [];
+self.ratedata = {};
+
+self.getrate = function() {
+$http.get('/gethistory')
+.then(function(response) {
+self.rate=response.data;
+console.log(self.rate);
+console.log(self.rate[0].currentdate)
+var lab=[];
+var dat=[];
+var dat1=[];
+var dat2=[];
+ for(var par in self.rate){
+ lab.push(self.rate[par].currentdate);
+ dat1.push(self.rate[par].rate);
+ dat2.push(self.rate[par].rate);
+ }
+ dat.push(dat1);
+ dat.push(dat2);
+ self.labels =lab;
+ console.log(lab);
+  self.series = ['Series A', 'Series B'];
+  self.data = dat;
+  console.log(self.data);
+  self.onClick = function (points, evt) {
+    console.log("values"+points, evt);
+  };
+});
+};
+
 }]);
