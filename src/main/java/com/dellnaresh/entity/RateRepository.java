@@ -1,5 +1,6 @@
 package com.dellnaresh.entity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,4 +9,5 @@ import java.util.List;
 public interface RateRepository {
 
     List<Exchangerate> findAll();
+    List<Exchangerate> findAll(String from,String to,Date startdate);
 }

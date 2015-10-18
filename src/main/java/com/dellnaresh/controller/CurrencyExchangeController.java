@@ -47,7 +47,7 @@ public class CurrencyExchangeController {
     @RequestMapping(method = RequestMethod.POST, value = "/gethistory",consumes = {"application/json", "application/xml"})
     public List<Exchangerate> getConversionHistory(@RequestBody Rate rate) {
             logger.info("Get History input {}",rate);
-            return this.repository.findAll();
+            return this.repository.findAll(rate.getFrom(),rate.getTo(),rate.getStartdate());
     }
 
 }
