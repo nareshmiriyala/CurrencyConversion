@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.dellnaresh.exchangerate.CurrencyExchange;
 import com.dellnaresh.resources.RateData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.money.CurrencyUnit;
 import javax.money.NumberValue;
@@ -28,6 +30,7 @@ import java.util.List;
  */
 @RestController
 public class CurrencyExchangeController {
+    private Logger logger=LoggerFactory.getLogger(CurrencyExchangeController.class);
     @Autowired
     private RateRepository repository;
     @RequestMapping(method = RequestMethod.POST, value = "/getrate")
@@ -40,8 +43,9 @@ public class CurrencyExchangeController {
         return rate.doubleValue();
     }
     @Transactional(readOnly = true)
-    @RequestMapping(method = RequestMethod.GET, value = "/gethistory")
-    public List<Exchangerate> getConversionHistory() {
+    @RequestMapping(method = RequestMethod.POST, value = "/gethistory")
+    public List<Exchangerate> getConversionHistory(@RequestBody RateData rateData) {
+            logger.info("Get History input {}",rateData);
             return this.repository.findAll();
     }
 

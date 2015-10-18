@@ -43,7 +43,7 @@ public class ExchangeRatesRepoTest {
 	@Test
 	public void findsAllTags() {
 		List<Exchangerate> tags = this.repository.findAll();
-		assertEquals(tags.size(),2);
+		assertEquals(6,tags.size());
 	}
 
 }
