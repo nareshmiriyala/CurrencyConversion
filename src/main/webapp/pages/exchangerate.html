@@ -20,16 +20,16 @@
             <div class="col-xs-6">
                 <form role="form" ng-submit="mainctrl.getrate()">
                     <div class="form-group ">
-                        <label class="control-label " for="fromcurrency">From Currency:</label>
+                        <label class="control-label " for="from">From Currency:</label>
 
-                        <input type="text" class="form-control " id="fromcurrency"
-                               ng-model="mainctrl.ratedata.fromcurrency">
+                        <input type="text" class="form-control " id="from"
+                               ng-model="mainctrl.rate.from">
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label" for="tocurrency">To Currency:</label>
+                        <label class="control-label" for="to">To Currency:</label>
 
-                        <input type="text" class="form-control" id="tocurrency" ng-model="mainctrl.ratedata.tocurrency">
+                        <input type="text" class="form-control" id="to" ng-model="mainctrl.rate.to">
                     </div>
 
                     <input class="btn btn-success btn-block" type="submit" value="Getrate">
@@ -37,7 +37,7 @@
                 <br>
                 <div class="control-group">
                     <div class="control-label">
-                        value: {{mainctrl.rate}}
+                        value: {{mainctrl.rateResp}}
                     </div>
                 </div>
             </div>

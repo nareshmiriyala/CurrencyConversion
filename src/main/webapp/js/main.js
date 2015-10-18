@@ -59,35 +59,37 @@ app.controller('PageCtrl', function (/* $scope, $location, $http */) {
 app.controller('exchangeController', ['$http', function($http) {
 var self = this;
 self.items = [];
-self.ratedata = {};
+self.rateResp = {};
 
 self.getrate = function() {
-$http.post('/getrate', self.ratedata)
+console.log("Rate Data:"+self.rate)
+$http.post('/getrate', self.rate)
 .then(function(response) {
-self.rate=response.data;
-console.log(self.rate);
+self.rateResp=response.data;
+console.log(self.rateResp);
 });
 };
 }]);
 app.controller('rateController', ['$http', function($http) {
 var self = this;
 self.items = [];
-self.ratedata = {};
+self.rateResp = {};
 
 self.getrate = function() {
-$http.get('/gethistory')
+console.log("Rate History input:"+self.rate.startdate)
+$http.post('/gethistory',self.rate)
 .then(function(response) {
-self.rate=response.data;
-console.log(self.rate);
-console.log(self.rate[0].currentdate)
+self.rateResp=response.data;
+console.log(self.rateResp);
+console.log(self.rateResp[0].to)
 var lab=[];
 var dat=[];
 var dat1=[];
 var dat2=[];
- for(var par in self.rate){
- lab.push(self.rate[par].currentdate);
- dat1.push(self.rate[par].rate);
- dat2.push(self.rate[par].rate);
+ for(var par in self.rateResp){
+ lab.push(self.rateResp[par].to);
+ dat1.push(self.rateResp[par].rate);
+ dat2.push(self.rateResp[par].rate);
  }
  dat.push(dat1);
  dat.push(dat2);

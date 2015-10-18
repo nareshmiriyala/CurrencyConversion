@@ -7,13 +7,13 @@ package com.dellnaresh.controller;
 
 import com.dellnaresh.entity.Exchangerate;
 import com.dellnaresh.entity.RateRepository;
+import com.dellnaresh.resources.Rate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.dellnaresh.exchangerate.CurrencyExchange;
-import com.dellnaresh.resources.RateData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,19 +33,20 @@ public class CurrencyExchangeController {
     private Logger logger=LoggerFactory.getLogger(CurrencyExchangeController.class);
     @Autowired
     private RateRepository repository;
-    @RequestMapping(method = RequestMethod.POST, value = "/getrate")
-    public double getConversionRate(@RequestBody RateData rateData) {
-        CurrencyUnitBuilder of = CurrencyUnitBuilder.of(rateData.getFromCurrency(), "ECB");
+    @RequestMapping(method = RequestMethod.POST, value = "/getrate",consumes = {"application/json", "application/xml"})
+    public double getConversionRate(@RequestBody Rate rate) {
+        logger.info("Rate Data:"+rate);
+        CurrencyUnitBuilder of = CurrencyUnitBuilder.of(rate.getFrom(), "ECB");
         CurrencyUnit fromCu = of.build();
-        CurrencyUnitBuilder to = CurrencyUnitBuilder.of(rateData.getToCurrency(), "ECB");
+        CurrencyUnitBuilder to = CurrencyUnitBuilder.of(rate.getTo(), "ECB");
         CurrencyUnit toCu = to.build();
-        NumberValue rate = CurrencyExchange.getRate(fromCu, toCu);
-        return rate.doubleValue();
+        NumberValue numberValue = CurrencyExchange.getRate(fromCu, toCu);
+        return numberValue.doubleValue();
     }
     @Transactional(readOnly = true)
-    @RequestMapping(method = RequestMethod.POST, value = "/gethistory")
-    public List<Exchangerate> getConversionHistory(@RequestBody RateData rateData) {
-            logger.info("Get History input {}",rateData);
+    @RequestMapping(method = RequestMethod.POST, value = "/gethistory",consumes = {"application/json", "application/xml"})
+    public List<Exchangerate> getConversionHistory(@RequestBody Rate rate) {
+            logger.info("Get History input {}",rate);
             return this.repository.findAll();
     }
 
