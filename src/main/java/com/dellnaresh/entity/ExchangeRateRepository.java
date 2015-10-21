@@ -2,6 +2,7 @@ package com.dellnaresh.entity;
 
 import org.springframework.stereotype.Repository;
 
+import javax.money.convert.ExchangeRate;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -30,4 +31,11 @@ public class ExchangeRateRepository implements RateRepository {
 //        query.setParameter("arg3",startdate);
         return query.getResultList();
     }
+
+    @Override
+    public void add(String from, String to, double rate,Date startdate) {
+        Exchangerate rate1= new Exchangerate(from,to,rate,startdate);
+        this.entityManager.persist(rate1);
+    }
+
 }

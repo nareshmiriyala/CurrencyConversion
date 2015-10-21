@@ -103,5 +103,15 @@ var dat2=[];
   };
 });
 };
+self.addrate=function(){
+console.log("addrate called");
+$http.post('/addrate',self.addedrate).then(
+function(response){
+self.message="Success";
+},function(response){
+self.message="Failure to add";
+}
+);
+};
 
 }]);

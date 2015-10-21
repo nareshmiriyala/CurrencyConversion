@@ -17,7 +17,7 @@ public class Rate {
     private String to;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date startdate;
-
+    double rateValue;
     public Rate() {
 
     }
@@ -31,6 +31,21 @@ public class Rate {
         this.from = from;
         this.to = to;
         this.startdate = startdate;
+    }
+
+    public Rate(String from, String to, Date startdate, double rateValue) {
+        this.from = from;
+        this.to = to;
+        this.startdate = startdate;
+        this.rateValue = rateValue;
+    }
+
+    public double getRateValue() {
+        return rateValue;
+    }
+
+    public void setRateValue(double rateValue) {
+        this.rateValue = rateValue;
     }
 
     public String getFrom() {

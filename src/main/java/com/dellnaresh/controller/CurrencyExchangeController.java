@@ -49,5 +49,10 @@ public class CurrencyExchangeController {
             logger.info("Get History input {}",rate);
             return this.repository.findAll(rate.getFrom(),rate.getTo(),rate.getStartdate());
     }
+    @RequestMapping(method = RequestMethod.POST, value = "/addrate",consumes = {"application/json", "application/xml"})
+    public void addConversionHistory(@RequestBody Rate rate) {
+        logger.info("Add History input {}",rate);
+        this.repository.add(rate.getFrom(),rate.getTo(),rate.getRateValue(),rate.getStartdate());
+    }
 
 }

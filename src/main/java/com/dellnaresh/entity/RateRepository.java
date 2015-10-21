@@ -10,4 +10,5 @@ public interface RateRepository {
 
     List<Exchangerate> findAll();
     List<Exchangerate> findAll(String from,String to,Date startdate);
+    void add(String from,String to,double rate,Date startdate);
 }
