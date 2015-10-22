@@ -135,3 +135,11 @@ footer {
         /* increases the carousel height so it looks good on phones */
     }
 }
+
+div.addrate{
+/*outline: 2px solid green;*/
+ border-radius: 25px;
+    border: 2px solid #8AC007;
+    padding: 20px;
+
+}

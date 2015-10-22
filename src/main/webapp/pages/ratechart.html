@@ -15,66 +15,81 @@
 
     </div>
     <div class="row">
+    <div class="col-xs-5 container-fluid addrate">
+        <div class="page-header">
+            <h1>Add Rate</h1>
+        </div>
         <div ng-controller="rateController as addctrl">
             <form role="form" ng-submit="addctrl.addrate()">
-                <div class="form-group">
+                <div class="row">
+                <div class="form-group col-xs-4">
                     <label class="control-label " for="fromCurrency">From Currency:</label>
 
                     <input type="text" class="form-control " id="fromCurrency"
                            ng-model="addctrl.rate.from">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group col-xs-4">
                     <label class="control-label" for="toCurrency">To Currency:</label>
 
                     <input type="text" class="form-control" id="toCurrency" ng-model="addctrl.rate.to">
                 </div>
-                <div class="form-group">
+                </div>
+                <div class="row">
+                <div class="form-group col-xs-3">
                     <label class="control-label" for="ratevalue">Rate Value:</label>
-                    <input type='number' class="form-control"id="ratevalue" ng-model="addctrl.rate.rateValue"/>
+                    <input type='decimal' class="form-control"id="ratevalue" ng-model="addctrl.rate.rateValue"/>
 
                 </div>
-                <div class="form-group">
+                <div class="form-group col-xs-7">
                     <label class="control-label" for="startDateValue">Start Date:</label>
                     <input type='datetime-local' class="form-control"id="startDateValue" ng-model="addctrl.rate.startdate"/>
 
                 </div>
-                <input class="btn btn-success btn-block" type="submit" value="Add Rate">
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-3">
+                <input class="btn btn-primary " type="submit" value="Add Rate">
+                        </div>
+                </div>
             </form>
         </div>
         </div>
-    <div class="row">
+
+    <div class="col-xs-7 container-fluid addrate">
+        <div class="page-header">
+            <h1>Get Rate</h1>
+        </div>
         <div ng-controller="rateController as mainctrl">
-            <div class="col-xs-6">
                 <form role="form" ng-submit="mainctrl.getrate()">
-                    <div class="form-group ">
+                    <div class="row">
+                    <div class="form-group col-xs-3">
                         <label class="control-label " for="from">From Currency:</label>
 
                         <input type="text" class="form-control " id="from"
                                ng-model="mainctrl.rate.from">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group col-xs-3">
                         <label class="control-label" for="to">To Currency:</label>
 
                         <input type="text" class="form-control" id="to" ng-model="mainctrl.rate.to">
                     </div>
-                    <div class="form-group">
+                    </div>
+                    <div class="row">
+                    <div class="form-group col-xs-6">
                         <label class="control-label" for="startdate">Start Date:</label>
                         <input type='datetime-local' class="form-control"id="startdate" ng-model="mainctrl.rate.startdate"/>
 
                     </div>
-                    <input class="btn btn-success btn-block" type="submit" value="Getrate">
+                    </div>
+                    <div class="row col-xs-3">
+                    <input class="btn btn-primary" type="submit" value="Getrate">
+                    </div>
                 </form>
-            </div>
 
-            <br>
-            <!--<div class="control-group">-->
-            <!--<div class="control-label">-->
-            <!--value: {{mainctrl.rate}}-->
-            <!--</div>-->
-            <!--</div>-->
-            <div class="col-sm-6">
+
+            <div class=" row col-xs-10">
                 <canvas id="line" class="chart chart-line" chart-data="mainctrl.data"
                         chart-labels="mainctrl.labels" chart-legend="true" chart-series="mainctrl.series"
                         chart-click="mainctrl.onClick" >
@@ -82,4 +97,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>
