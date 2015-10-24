@@ -1,5 +1,7 @@
 package com.dellnaresh.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,7 @@ public class Exchangerate {
     private String fromcurrency;
 
     private String tocurrency;
-
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private double rate;
 
     private Date currentdate;

@@ -82,25 +82,7 @@ $http.post('/gethistory',self.rate)
 self.rateResp=response.data;
 console.log(self.rateResp);
 console.log(self.rateResp[0].to)
-var lab=[];
-var dat=[];
-var dat1=[];
-var dat2=[];
- for(var par in self.rateResp){
- lab.push(self.rateResp[par].to);
- dat1.push(self.rateResp[par].rate);
- dat2.push(self.rateResp[par].rate);
- }
- dat.push(dat1);
- dat.push(dat2);
- self.labels =lab;
- console.log(lab);
-  self.series = ['Series A', 'Series B'];
-  self.data = dat;
-  console.log(self.data);
-  self.onClick = function (points, evt) {
-    console.log("values"+points, evt);
-  };
+createChart(response.data);
 });
 };
 self.addrate=function(){
@@ -115,3 +97,66 @@ self.message="Failure to add";
 };
 
 }]);
+ var randomScalingFactor = function() {
+            return Math.round(Math.random() * 100 * (Math.random() > 0.5 ? -1 : 1));
+        };
+        var randomColorFactor = function() {
+            return Math.round(Math.random() * 255);
+        };
+        var randomColor = function(opacity) {
+            return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+        };
+function createChart(items){
+ console.log("Item data:"+items);
+ var dateList=[];
+ var rateList=[];
+ for( var par in items){
+ var dateValue=moment(items[par].currentdate).format('MM/DD/YYYY');
+ console.log("Date Value:"+dateValue);
+ dateList.push(dateValue);
+ rateList.push(items[par].rate);
+ }
+var config = {
+            type: 'line',
+            data: {
+                labels: dateList,
+                datasets: [{
+                    label: "My First dataset",
+                    data:rateList,
+                    fill: false,
+                    borderDash: [5, 5],
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Date'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            show: true,
+                            labelString: 'Rate'
+                        }
+                    }]
+                }
+            }
+        };
+
+        $.each(config.data.datasets, function(i, dataset) {
+            dataset.borderColor = randomColor(0.4);
+            dataset.backgroundColor = randomColor(0.5);
+            dataset.pointBorderColor = randomColor(0.7);
+            dataset.pointBackgroundColor = randomColor(0.5);
+            dataset.pointBorderWidth = 1;
+        });
+
+        console.log(config.data);
+                    var ctx = document.getElementById("canvas").getContext("2d");
+                    window.myLine = new Chart(ctx, config);
+}

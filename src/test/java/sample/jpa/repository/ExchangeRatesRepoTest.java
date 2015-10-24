@@ -15,6 +15,7 @@
  */
 package sample.jpa.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import com.dellnaresh.Application;
@@ -43,7 +44,14 @@ public class ExchangeRatesRepoTest {
 	@Test
 	public void findsAllTags() {
 		List<Exchangerate> tags = this.repository.findAll();
-		assertEquals(6,tags.size());
+		assertEquals(7,tags.size());
 	}
+
+    @Test
+    public void addRate(){
+        this.repository.add("AUD","INR",12.00,new Date());
+        List<Exchangerate> tags = this.repository.findAll();
+        assertEquals(7,tags.size());
+    }
 
 }

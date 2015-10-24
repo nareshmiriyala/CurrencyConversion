@@ -6,6 +6,7 @@ import javax.money.convert.ExchangeRate;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +34,10 @@ public class ExchangeRateRepository implements RateRepository {
     }
 
     @Override
+    @Transactional
     public void add(String from, String to, double rate,Date startdate) {
         Exchangerate rate1= new Exchangerate(from,to,rate,startdate);
+
         this.entityManager.persist(rate1);
     }
 
