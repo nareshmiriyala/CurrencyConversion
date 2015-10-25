@@ -1,0 +1,25 @@
+{
+  "name": "CurrencyConversion",
+  "homepage": "https://github.com/nareshmiriyala/CurrencyConversion",
+  "authors": [
+    "Naresh Chandra Miriyala <ncmiriyala@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Chart.js": "~1.0.2"
+  }
+}
