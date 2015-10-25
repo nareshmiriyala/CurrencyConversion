@@ -7,7 +7,7 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('conversionApp', [
-  'ngRoute','chart.js'
+  'ngRoute'
 ]);
 
 /**
