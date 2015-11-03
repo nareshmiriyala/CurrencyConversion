@@ -42,7 +42,11 @@
            <artifactId>moneta</artifactId>
            <version>1.0</version>
        </dependency>
-
+        <dependency>
+            <groupId>com.dellnaresh</groupId>
+            <artifactId>YoutubeDownloader</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <properties>

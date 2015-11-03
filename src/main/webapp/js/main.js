@@ -7,7 +7,7 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('conversionApp', [
-  'ngRoute'
+  'ngRoute','angular-loading-bar'
 ]);
 
 /**
@@ -21,6 +21,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when("/about", {templateUrl: "pages/about.html", controller: "PageCtrl"})
     .when("/faq", {templateUrl: "pages/faq.html", controller: "PageCtrl"})
     .when("/pricing", {templateUrl: "pages/pricing.html", controller: "PageCtrl"})
+    .when("/videodownload", {templateUrl: "pages/videodownload.html", controller: "downloadCtrl"})
     .when("/exchangerate", {templateUrl: "pages/exchangerate.html", controller: "exchangeController"})
     .when("/ratechart", {templateUrl: "pages/ratechart.html", controller: "rateController"})
     .when("/services", {templateUrl: "pages/services.html", controller: "PageCtrl"})
@@ -69,6 +70,18 @@ self.rateResp=response.data;
 console.log(self.rateResp);
 });
 };
+}]);
+app.controller('downloadCtrl',['$http',function($http){
+var self=this;
+self.resp={};
+self.downloadVideo=function(){
+console.log("Download videoid:"+self.videoUrl);
+$http.post('/downloadVideo',self.videoUrl)
+.then(function(response){
+self.resp=response.data;
+console.log(self.resp);
+});
+}
 }]);
 app.controller('rateController', ['$http', function($http) {
 var self = this;

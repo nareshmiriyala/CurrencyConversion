@@ -1,0 +1,41 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Get Rate
+                <small>Select the values!</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="../index.html">Home</a>
+                </li>
+                <li class="active">Download Video</li>
+            </ol>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-5 container-fluid addrate">
+            <div class="page-header">
+                <h1>Download Video</h1>
+            </div>
+<div ng-controller="downloadCtrl as mainctrl">
+    <form role="form" ng-submit="mainctrl.downloadVideo()">
+
+        <div class="row ">
+            <label class="control-label " for="videoUrl">Video ID:</label>
+
+            <input type="text" class="form-control " id="videoUrl"
+                   ng-model="mainctrl.videoUrl">
+            </div>
+        <br>
+        <div class="row col-xs-1">
+
+            <input class="btn btn-primary" type="submit" value="Download Video">
+
+        </div>
+        </form>
+    </div>
+</div>
+        </div>
+    </div>
