@@ -20,6 +20,37 @@ var pageController = function (/* $scope, $location, $http */) {
         selector: "a[data-toggle=tooltip]"
     })
 };
+var rateController = function ($http,ngDialog) {
+    var self = this;
+    self.items = [];
+    self.rateResp = {};
+
+    self.getrate = function () {
+        console.log("Rate History input:" + self.rate.startdate)
+        $http.post('/gethistory', self.rate)
+            .then(function (response) {
+                self.rateResp = response.data;
+                console.log(self.rateResp);
+                console.log(self.rateResp[0].to)
+                createChart(response.data);
+            });
+    };
+    self.clickToOpen=function () {
+        console.log("called");
+        ngDialog.open({ template: 'pages/addrate.html',className: 'ngdialog-theme-default'});
+    };
+    self.addrate = function () {
+        console.log("addrate called");
+        $http.post('/addrate', self.addedrate).then(
+            function (response) {
+                self.message = "Success";
+            }, function (response) {
+                self.message = "Failure to add";
+            }
+        );
+    };
+
+};
 
 
 var exchangeController = function ($http) {

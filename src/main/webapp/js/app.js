@@ -7,7 +7,7 @@
  * Main AngularJS Web Application
  */
 var app = angular.module('conversionApp', [
-    'ngRoute', 'angular-loading-bar'
+    'ngRoute', 'angular-loading-bar','ngDialog'
 ]);
 
 /**
@@ -32,7 +32,20 @@ app.config(['$routeProvider', function ($routeProvider) {
         // else 404
         .otherwise("/404", {templateUrl: "pages/404.html", controller: "PageCtrl"});
 }]);
-
+// Example of how to set default values for all dialogs
+app.config(['ngDialogProvider', function (ngDialogProvider) {
+    ngDialogProvider.setDefaults({
+        className: 'ngdialog-theme-default',
+        plain: false,
+        showClose: true,
+        closeByDocument: true,
+        closeByEscape: true,
+        appendTo: false,
+        preCloseCallback: function () {
+            console.log('default pre-close callback');
+        }
+    });
+}]);
 /**
  * Controls the Blog
  */
@@ -46,33 +59,8 @@ app.controller('PageCtrl', pageController);
 app.controller('exchangeController', ['$http', exchangeController]);
 
 app.controller('downloadCtrl', ['$http', downloadController]);
-app.controller('rateController', ['$http', function ($http) {
-    var self = this;
-    self.items = [];
-    self.rateResp = {};
 
-    self.getrate = function () {
-        console.log("Rate History input:" + self.rate.startdate)
-        $http.post('/gethistory', self.rate)
-            .then(function (response) {
-                self.rateResp = response.data;
-                console.log(self.rateResp);
-                console.log(self.rateResp[0].to)
-                createChart(response.data);
-            });
-    };
-    self.addrate = function () {
-        console.log("addrate called");
-        $http.post('/addrate', self.addedrate).then(
-            function (response) {
-                self.message = "Success";
-            }, function (response) {
-                self.message = "Failure to add";
-            }
-        );
-    };
-
-}]);
+app.controller('rateController', ['$http','ngDialog', rateController]);
 var randomScalingFactor = function () {
     return Math.round(Math.random() * 100 * (Math.random() > 0.5 ? -1 : 1));
 };

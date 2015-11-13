@@ -14,53 +14,12 @@
         </div>
 
     </div>
-    <div class="row">
-    <div class="col-xs-5 container-fluid addrate">
-        <div class="page-header">
-            <h1>Add Rate</h1>
-        </div>
-        <div ng-controller="rateController as addctrl">
-            <form role="form" ng-submit="addctrl.addrate()">
-                <div class="row">
-                <div class="form-group col-xs-4">
-                    <label class="control-label " for="fromCurrency">From Currency:</label>
-
-                    <input type="text" class="form-control " id="fromCurrency"
-                           ng-model="addctrl.addedrate.from">
-                </div>
-
-                <div class="form-group col-xs-4">
-                    <label class="control-label" for="toCurrency">To Currency:</label>
-
-                    <input type="text" class="form-control" id="toCurrency" ng-model="addctrl.addedrate.to">
-                </div>
-                </div>
-                <div class="row">
-                <div class="form-group col-xs-3">
-                    <label class="control-label" for="ratevalue">Rate Value:</label>
-                    <input type='decimal' class="form-control"id="ratevalue" ng-model="addctrl.addedrate.rateValue"/>
-
-                </div>
-                <div class="form-group col-xs-7">
-                    <label class="control-label" for="startDateValue">Start Date:</label>
-                    <input type='datetime-local' class="form-control"id="startDateValue" ng-model="addctrl.addedrate.startdate"/>
-
-                </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-xs-3">
-                <input class="btn btn-primary " type="submit" value="Add Rate">
-                        </div>
-                </div>
-            </form>
-        </div>
-        </div>
-
+    <div class="row" ng-controller="rateController as mainctrl">
     <div class="col-xs-7 container-fluid addrate">
         <div class="page-header">
             <h1>Get Rate</h1>
         </div>
-        <div ng-controller="rateController as mainctrl">
+        <div >
                 <form role="form" ng-submit="mainctrl.getrate()">
                     <div class="row">
                     <div class="form-group col-xs-3">
@@ -88,11 +47,13 @@
                     </div>
                 </form>
 
+                <button name="Add Rate" class="btn btn-primary" ng-click="mainctrl.clickToOpen()">Add Rate</button>
 
             <div class=" row col-xs-10">
                     <canvas id="canvas" height="500" width="600"></canvas>
             </div>
         </div>
     </div>
+
 </div>
 </div>
